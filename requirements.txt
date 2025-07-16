@@ -1,0 +1,15 @@
+# pip install -r requirements.txt
+# tested on Ubuntu 24.04.1 LTS and Python 3.12
+#
+# to run Blob Matching + DTM
+numpy
+pillow
+matplotlib
+scipy
+torch
+kornia
+opencv-python
+opencv-contrib-python
+# to run also the demo
+poselib
+kornia-moons
