@@ -30,7 +30,7 @@ pip install -r requirements.txt
 The current requirement file has been tested on Ubuntu 24.04. 
 
 ## Launch the demo
-To use with the base image pair example run from the terminal 
+To use the demo with the default example image pair run from the terminal 
 ```
 python ./demo.py
 ```
