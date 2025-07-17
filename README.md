@@ -38,10 +38,10 @@ or with your image pair as
 ```
 python ./demo.py <path of 1st image> <path of the 2nd image>
 ```
-For further details or customizations please inspect the comment in ``demo.py``.
+For further details or customizations please inspect the comments in ``demo.py``.
 
 ## Notes
-+ The demo use DoG and [HarrisZ+](https://github.com/fb82/HarrisZ) keypoints to compute the matches. In case of OOM issues you can select only one kind of keypoints.
++ The demo uses DoG and [HarrisZ+](https://github.com/fb82/HarrisZ) keypoints to compute the matches. In case of OOM issues you can select only one kind of keypoints.
 + Blob matching is implemented in PyTorch. By default it runs on CPU to avoid OOM, but if you have enough memory you can try on GPU. The demo allows alternatively the usage of the standard MNN.
 
 ## Where can I find more details?
