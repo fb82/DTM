@@ -3,8 +3,6 @@
 <p align="center">
   <h2 align="center"><p>
     🔥 🐍 Python implementation </a> 🐍 🔥
-    <br>
-    👉 📖 <a href="https://arxiv.org/abs/2106.09584" align="center">paper on arXiv</a> 📖 👈
   </p></h2>
 
 <p align="center">
