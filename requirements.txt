@@ -13,3 +13,4 @@ opencv-contrib-python
 # to run also the demo
 poselib
 kornia-moons
+torchvision
