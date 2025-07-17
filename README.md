@@ -1,29 +1,20 @@
-<h1 align="center"> 🧹🪣 MOP+MiHo+NCC 🖼️👀 <br> <br> Image Matching Filtering and Refinement <br> by Planes and Beyond </h1>
-
-<p align="center">
-  <a href="https://sites.google.com/view/fbellavia/home?authuser=0">Fabio Bellavia*</a>
-  ·
-  <a href="https://ericzzj1989.github.io">Zhenjun Zhao*</a>
-  ·
-  <a href="https://3dom.fbk.eu/people/profile/luca-morelli">Luca Morelli</a>
-  ·
-  <a href="https://3dom.fbk.eu/people/profile/remondino">Fabio Remondino</a>
-</p>
+<h1 align="center">🙈📐 Delaunay Triangulation Matching (DTM) 🖼️👀</h1>
 
 <p align="center">
   <h2 align="center"><p>
-    👉 📖 <a href="https://arxiv.org/abs/2411.09484" align="center">paper on arXiv</a> 📖 👈
+    👉 📖 <a href="https://arxiv.org/abs/2106.09584" align="center">paper on arXiv</a> 📖 👈
   </p></h2>
 <div align="center"></div>
 
 <p align="center">
-    <img src="https://github.com/fb82/MiHo/blob/main/data/other/lions.png" alt="example" width=80%>
+    <img src="https://github.com/fb82/DTM/blob/main/data/out/ET.jpg" alt="example" height=200>
+    <img src="https://github.com/fb82/DTM/blob/main/data/out/DC.jpg" alt="example" height=200>
     <br>
-    <em>Planar clusters assigned by MOP+MiHo, outlier matches are marked <br> with black diamonds, NCC keypoint shifts are not shown.</em>
+    <em>HarrisZ+ and DoG + AffNet + OriNet + HardNet + <b>Blob matching</b> + <b>DTM</b> + RANSAC</em>
 </p>
 
 ## What is it?
-MOP+MiHo+NCC is a modular, non-deep method designed to filter and refine image matches. This approach enhances the quality of image matching by utilizing multiple techniques:
+DTM is a non-deep spatial matching filter based on Delaunay triangulation. This is the Python implementation, the [original code](https://sites.google.com/view/fbellavia/research/blob_dtm) was released in Matlab.
 1. Multiple Overlapping Planes (MOP) removes outlier matches while jointly clustering inlier matches into planes by an iterative RANSAC-based strategy;
 2. Middle Homography (MiHo) improves planar homography from MOP by minimizing relative patch distortion in the plane reprojection;
 3. Normalized Cross Correlation (NCC) refines keypoint positions on patches after planar transformation.
