@@ -29,6 +29,8 @@ cd DTM
 git submodule update --init --recursive
 pip install -r requirements.txt
 ```
+The current requirement file has been tested on Ubuntu 24.04. 
+
 ## Launch the demo
 To use with the base image pair example run from the terminal 
 ```
