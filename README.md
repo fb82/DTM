@@ -14,13 +14,19 @@
 </p>
 
 ## What is it?
-DTM is a non-deep spatial matching filter based on Delaunay triangulation. This is the Python implementation, the [original code](https://sites.google.com/view/fbellavia/research/blob_dtm) was released in Matlab.
-1. Multiple Overlapping Planes (MOP) removes outlier matches while jointly clustering inlier matches into planes by an iterative RANSAC-based strategy;
-2. Middle Homography (MiHo) improves planar homography from MOP by minimizing relative patch distortion in the plane reprojection;
-3. Normalized Cross Correlation (NCC) refines keypoint positions on patches after planar transformation.
++ DTM is a non-deep spatial matching filter based on Delaunay triangulation. The [original code](https://sites.google.com/view/fbellavia/research/blob_dtm) was released in Matlab, this is the Python implementation.
++ DTM was originally developed to work with Blob matching, a general framework wich also includes matching strategies like Mutual Nearest Neighbor (MNN) or Nearest Neighbor Ratio (NNR). Blob matching is also included in this implementation (but it is not mandatory).
++ For the best result, DTM requires as input the candidate matches and their similarity, but can works with spatial information only and no descriptor similarity clues.
++ DTM can also be used as guided matching to increase the correspondences. 
 
-## Is it good?
-MOP+MiHo consistently improves match quality when used a pre-processing step for RANSAC, without negatively affecting the final results in any case. MOP+MiHo+NCC introduces additional improvements in the case of corner-like matches, which are common in methods such as [Key.Net](https://github.com/axelBarroso/Key.Net) or [SuperPoint](https://github.com/magicleap/SuperPointPretrainedNetwork). However, for blob-like matches, which are more typical of methods like SIFT, MOP+MiHo+NCC unfortunately tends to degrade performance.
+## Setup
+```
+git clone https://github.com/fb82/DTM.git
+cd DTM
+git submodule update --init --recursive
+pip install -r requirements.txt
+```
+## Launch the demo
 
 **Comparative evaluation is available [here](https://github.com/fb82/MiHo/tree/main/data/results/benchmark/base)**.
 
