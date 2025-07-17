@@ -14,7 +14,8 @@
 </p>
 
 ## What is it?
-+ DTM is a non-deep spatial matching filter based on Delaunay triangulation. The [original code](https://sites.google.com/view/fbellavia/research/blob_dtm) was released in Matlab, this is the Python implementation.
++ DTM is a non-deep spatial matching filter based on Delaunay triangulation, like for instance [GMS](https://github.com/JiawangBian/GMS-Feature-Matcher) and [LPM](https://github.com/jiayi-ma/LPM?tab=readme-ov-file).
++ The [original code](https://sites.google.com/view/fbellavia/research/blob_dtm) was released in Matlab, this is the Python implementation .
 + DTM was originally developed to work with Blob matching, a general framework wich also includes matching strategies like Mutual Nearest Neighbor (MNN) or Nearest Neighbor Ratio (NNR). Blob matching is also included in this implementation (but it is not mandatory).
 + For the best result, DTM requires as input the candidate matches and their similarity, but can works with spatial information only and no descriptor similarity clues.
 + DTM can also be used as guided matching to increase the correspondences. 
