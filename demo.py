@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # if you need, change to
     # device = 'cpu'
    
-    warnings.warn("if your GPU has little amount of memory (i.e. 4GB), set device='cpu' or change the image pair as detailed in this demo.py code")    
+    warnings.warn("if your GPU has little amount of memory (i.e. 4GB), set device='cpu' or change the keypoint detectors or the image pair as detailed in this demo.py code")    
     
     im_pair = ['data/DC/dc0.png', 'data/DC/dc2.png']
     # or if you have low amount of GPU memory
