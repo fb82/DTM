@@ -147,8 +147,10 @@ if __name__ == "__main__":
         # if one just wants to use spatial clues only and not similarity    
         if dtm_only_spatial: match_data['m_val'][:] = 1.0
 
-        # retained matches are signed with 0s in the mask, values > 0 indicate at which iteration the match was discarded   
-        dtm_mask = dtm.dtm(match_data, show_in_progress=dtm_show_in_progress, prepare_data=dtm_prepare_data) == 0
+        # retained matches are signed values <= 0 in the mask
+        # values > 0 indicate at which iteration the match was discarded
+        # negative values indicate the iteraion in the 2nd step the match was re-included  
+        dtm_mask = dtm.dtm(match_data, show_in_progress=dtm_show_in_progress, prepare_data=dtm_prepare_data) <= 0
 
         # RANSAC         
         idx = m_idx.to('cpu').detach()
@@ -167,7 +169,7 @@ if __name__ == "__main__":
         for i in range(ii):
             # re-filter with DTM, guided filtering on previous matches by forcing their similarity values to the lowest value
             match_data['m_val'][sac_mask] = 0
-            dtm_mask = dtm.dtm(match_data, show_in_progress=dtm_show_in_progress, prepare_data=dtm_prepare_data) == 0
+            dtm_mask = dtm.dtm(match_data, show_in_progress=dtm_show_in_progress, prepare_data=dtm_prepare_data) <= 0
         
             # RANSAC on re-filtered matches
             idx = m_idx.to('cpu').detach()
