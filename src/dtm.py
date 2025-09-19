@@ -92,7 +92,8 @@ def prepare_data_shaped(pipe_data, p=0, m_mask=None, s=1., t=0., diff_i_limit=2)
 
     kp_ = (np.round(kp * s + t) - t) / s
     ku, u2k, k2u = np.unique(kp_, return_index=True, return_inverse=True, axis=0)
-
+    if ku.shape[0] == 0: return None, None, None, None, None
+    
     ku_aux, u2k_aux, k2u_aux = np.unique(np.concatenate((ku, ku_)), return_index=True, return_inverse=True, axis=0)
     aux_mask = np.zeros(ku_aux.shape[0], dtype=bool)
     aux_mask[k2u_aux[:ku.shape[0]]] = True    
