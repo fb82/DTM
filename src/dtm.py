@@ -655,7 +655,8 @@ def dtm2(pipe_data, mask, show_in_progress=False, st=[1., 0.], prepare_data=prep
     return mask
 
 
-def blob_matching(pt1, pt2, desc1, desc2,
+def blob_matching(pt1, pt2,
+                  desc1, desc2, # can be None is m != None (see below)
                   pf=-10,  # f = 10 with union
                   pn=3,    # f' = 5
                   ps=16,   # to = 10
@@ -665,27 +666,30 @@ def blob_matching(pt1, pt2, desc1, desc2,
                   ss=1024, # split size
                   same_order=True,    
                   device='cpu', # preferred to avoid OOM
+                  m=None, # matrix distance instead of desc1, desc2
         ):
 
     if pt1.device != device: pt1 = pt1.to(device)
     if pt2.device != device: pt2 = pt2.to(device)
-    if desc1.device != device: desc1 = desc1.to(device)
-    if desc2.device != device: desc2 = desc2.to(device)
+
+    if m is None:    
+        if desc1.device != device: desc1 = desc1.to(device)
+        if desc2.device != device: desc2 = desc2.to(device)
         
-    desc1_blk = torch.split(desc1, ss, dim=0)
-    desc2_blk = torch.split(desc2, ss, dim=0)
+        desc1_blk = torch.split(desc1, ss, dim=0)
+        desc2_blk = torch.split(desc2, ss, dim=0)
 
-    m = torch.zeros((pt1.shape[0], pt2.shape[0]), dtype=torch.float32, device=device)
+        m = torch.zeros((pt1.shape[0], pt2.shape[0]), dtype=torch.float32, device=device)
             
-    pmn = 2
-    if distance == 'L1': pmn = 1
+        pmn = 2
+        if distance == 'L1': pmn = 1
     
-    for i in torch.arange(0, len(desc1_blk)):
-        for j in torch.arange(0, len(desc2_blk)):
-            v1 = desc1_blk[i]
-            v2 = desc2_blk[j]
+        for i in torch.arange(0, len(desc1_blk)):
+            for j in torch.arange(0, len(desc2_blk)):
+                v1 = desc1_blk[i]
+                v2 = desc2_blk[j]
 
-            m[i * ss:i * ss + v1.shape[0], j * ss:j * ss + v2.shape[0]] = torch.cdist(v1.unsqueeze(0), v2.unsqueeze(0), p=pmn)
+                m[i * ss:i * ss + v1.shape[0], j * ss:j * ss + v2.shape[0]] = torch.cdist(v1.unsqueeze(0), v2.unsqueeze(0), p=pmn)
 
     m[m==0] = 1.0e-18        
     
