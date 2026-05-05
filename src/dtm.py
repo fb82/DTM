@@ -689,7 +689,7 @@ def blob_matching(pt1, pt2,
                 v1 = desc1_blk[i]
                 v2 = desc2_blk[j]
 
-                m[i * ss:i * ss + v1.shape[0], j * ss:j * ss + v2.shape[0]] = torch.cdist(v1.unsqueeze(0), v2.unsqueeze(0), p=pmn)
+                m[i * ss:i * ss + v1.shape[0], j * ss:j * ss + v2.shape[0]] = torch.cdist(v1.unsqueeze(0), v2.unsqueeze(0), p=pmn).squeeze(0)
 
     m[m==0] = 1.0e-18        
     
